@@ -11,9 +11,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using Repositories.UserRepository;
-
-
-
+using Authorization.WebApi.Services.Interface;
+using Authorization.WebApi.Services.Implementation;
 
 namespace Authorization
 {

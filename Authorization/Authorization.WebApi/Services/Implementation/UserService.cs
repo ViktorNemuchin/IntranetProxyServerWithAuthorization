@@ -1,43 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
-using Authorization.WebApi.Helpers;
-using Db.Authorization.Model;
-using Microsoft.AspNetCore.Identity;
+﻿using Authorization.WebApi.Helpers;
+using Authorization.WebApi.Models;
+using Authorization.WebApi.Services.Interface;
 using Microsoft.Extensions.Options;
 using Repositories.UserRepository;
-using System.IdentityModel.Tokens.Jwt;
-using Microsoft.IdentityModel.Tokens;
 using Repositories.UserRepository.Models;
-using Authorization.WebApi.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-
-namespace Authorization.WebApi.Services
+namespace Authorization.WebApi.Services.Implementation
 {
-    public interface IUserService
-    {
-        /// <summary>
-        /// Авторизация
-        /// </summary>
-        /// <param name="username">Пользователь</param>
-        /// <param name="password">Пароль</param>
-        /// <returns></returns>
-        Task<UserViewModel> Authenticate(string username, string password);
-        /// <summary>
-        /// Получение всех прав
-        /// </summary>
-        /// <param name="userId"></param>
-        /// <returns></returns>
-        Task<List<UserRightView>> GetAllUserRights(Guid userId);
-    }
-
     /// <summary>
     /// Сервис аутентификации
     /// </summary>
-    public class UserService : IUserService
+    public class UserService: IUserService
     {
         private static IUserToken _users;
 
@@ -48,6 +25,7 @@ namespace Authorization.WebApi.Services
             _appSettings = appSettings.Value;
             _users = userToken;
         }
+        
         /// <summary>
         /// Аутентификация пользователя
         /// </summary>
@@ -71,7 +49,7 @@ namespace Authorization.WebApi.Services
             {
                 await _users.AddUser(domainUser, token);
             }
-            else 
+            else
             {
                 await _users.PutToken(domainUser.Guid.Value, token);
             }
@@ -80,9 +58,6 @@ namespace Authorization.WebApi.Services
             return userView;
         }
 
-
-
-        
         /// <summary>
         /// Получение всех прав пользователя
         /// </summary>
@@ -92,9 +67,5 @@ namespace Authorization.WebApi.Services
         {
             return await _users.GetAllUserRightsOut(userId);
         }
-
-
-
-        
     }
 }
