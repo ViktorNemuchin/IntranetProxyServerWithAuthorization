@@ -4,7 +4,7 @@ The main idea is to create a proxy Api that will help you control the API servic
 Each user has a set of rights consisting of Module, Object and Operators.
 * ``Module`` represents the service the user can access to
 * ``Object`` refers to the objects each service deals with.
-* ''Operators`` are actions each user can do with the object.
+* ``Operators`` are actions each user can do with the object.
 
 All the actions names in the proxy controller should correspond to the action names in the original API's and should be provided with the Permission Attribute.
 
