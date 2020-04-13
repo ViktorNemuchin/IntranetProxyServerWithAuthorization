@@ -1,0 +1,12 @@
+{
+  "DbConnections": [
+    {
+      "SettingsName": "Default",
+      "Provider": "MsSqlServer",
+      "Host": "s02-Old",
+      "Database": "auth",
+      "User": "FromInet",
+      "Password": "5hh$le:E.(44$3G"
+    }
+  ]
+}
